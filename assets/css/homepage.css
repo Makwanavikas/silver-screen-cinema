@@ -1,0 +1,376 @@
+/* ================= PREMIUM FONTS & GLOBAL ================= */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+html { scroll-behavior: smooth; }
+body { background: #000; color: #fff; overflow-x: hidden; }
+a { text-decoration: none; }
+
+/* ================= MODERNIZED NAVBAR ================= */
+.navbar {
+    width: 95%; margin: 25px auto; padding: 10px 35px;
+    display: flex; justify-content: space-between; align-items: center;
+    background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(20px);
+    border-radius: 100px; position: sticky; top: 20px;
+    z-index: 1000; border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.logo { 
+    font-size: 26px; font-weight: 700; 
+    background: linear-gradient(135deg, #ff3d68 0%, #ff7a59 50%, #ffd86b 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; 
+}
+
+.nav-links { display: flex; gap: 35px; list-style: none; }
+.nav-links a { color: #94a3b8; font-size: 15px; font-weight: 500; transition: 0.3s; position: relative; }
+.nav-links a::after { content: ''; position: absolute; width: 0; height: 2px; bottom: -5px; left: 0; background-color: #ff3d68; transition: width 0.3s; }
+.nav-links a:hover { color: #fff; }
+.nav-links a:hover::after { width: 100%; }
+.nav-links li.active a { color: #fff; font-weight: 600; }
+.nav-links li.active a::after { width: 100%; }
+
+.nav-actions { display: flex; gap: 20px; align-items: center; }
+
+.search-container { 
+    display: flex; align-items: center; background: rgba(255, 255, 255, 0.05); 
+    padding: 8px 18px; border-radius: 50px; border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.search-container input { background: transparent; border: none; color: white; outline: none; width: 140px; font-size: 14px; }
+.search-container button { background: transparent; border: none; color: #ff3d68; cursor: pointer; }
+
+.user-name-display { font-weight: 600; font-size: 15px; background: linear-gradient(90deg, #ff3d68, #ffd86b); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+.login-btn { 
+    padding: 10px 24px; border-radius: 50px; background: linear-gradient(90deg, #ff3d68, #ff7a59);
+    border: none; color: white; font-weight: 600; cursor: pointer; transition: 0.3s;
+}
+.login-btn:hover { transform: scale(1.05); }
+
+.admin-panel-btn {
+    background-color: #22c55e; color: #020617; border: none;
+    padding: 8px 16px; border-radius: 8px; font-weight: 600;
+    cursor: pointer; transition: 0.3s; margin-right: 10px;
+}
+.admin-panel-btn:hover { background-color: #16a34a; transform: translateY(-2px); }
+
+
+/* ================= DYNAMIC CINEMATIC SLIDER ================= */
+.hero { position: relative; width: 100%; min-height: 100vh; background-color: #020617; }
+
+.slider-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden; }
+
+.slide {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    opacity: 0; transition: opacity 1.2s ease-in-out; z-index: 1;
+    display: flex; align-items: center; justify-content: center;
+}
+.slide.active { opacity: 1; z-index: 10; }
+
+/* The heavily blurred background matching the movie colors */
+.slide-blur-bg {
+    position: absolute; top: -5%; left: -5%; width: 110%; height: 110%;
+    background-size: cover; background-position: center;
+    filter: blur(25px) brightness(0.25); /* Magic blur effect */
+    z-index: 1;
+}
+
+/* The Foreground Layout (Text Left, Image Right) */
+.slide-content {
+    position: relative; z-index: 2; width: 85%; max-width: 1200px;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 40px; margin-top: 40px;
+}
+
+/* Text Animations */
+.hero-text { flex: 1; transform: translateY(30px); opacity: 0; transition: 0.8s ease 0.3s; }
+.slide.active .hero-text { transform: translateY(0); opacity: 1; }
+
+.hero-text h1 { font-size: 55px; margin-bottom: 15px; text-shadow: 2px 4px 15px rgba(0,0,0,0.8); line-height: 1.1; }
+.slide-meta { font-size: 16px; color: #e2e8f0; margin-bottom: 30px; letter-spacing: 1px; }
+
+/* Poster Card Animations */
+.hero-image { flex: 0 0 320px; transform: scale(0.9) translateX(30px); opacity: 0; transition: 0.8s ease 0.3s; }
+.slide.active .hero-image { transform: scale(1) translateX(0); opacity: 1; }
+
+.hero-image img { 
+    width: 100%; border-radius: 16px; 
+    box-shadow: 0 20px 50px rgba(0,0,0,0.8); 
+    border: 1px solid rgba(255,255,255,0.15); 
+}
+
+.slider-buttons { display: flex; gap: 15px; }
+.explore-btn { padding: 12px 28px; border-radius: 30px; background: linear-gradient(90deg, #ff3d68, #ff7a59); color: white; border: none; font-size: 16px; font-weight: 600; cursor: pointer; transition: 0.3s; }
+.explore-btn:hover { transform: scale(1.05); box-shadow: 0 5px 15px rgba(255, 61, 104, 0.4); }
+.explore-btn.secondary { background: transparent; border: 2px solid white; color: white; }
+.explore-btn.secondary:hover { background: rgba(255, 255, 255, 0.1); }
+
+/* Dots */
+.slider-dots { position: absolute; bottom: 40px; left: 8%; z-index: 20; display: flex; gap: 10px; }
+.dot { width: 30px; height: 4px; background: rgba(255, 255, 255, 0.3); border-radius: 2px; cursor: pointer; transition: 0.4s; }
+.dot:hover { background: rgba(255, 255, 255, 0.8); }
+.dot.active { width: 50px; background: #ff3d68; box-shadow: 0 0 10px rgba(255, 61, 104, 0.5); }
+
+
+/* ================= MOVIE GRID ================= */
+.now-showing { padding: 80px 6%; background: #000; }
+.section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; }
+.section-header a { color: #facc15; font-weight: 600; }
+.movie-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 40px; }
+
+.movie-card { background: #0b1220; border-radius: 22px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05); transition: 0.3s ease; }
+.movie-card:hover { transform: translateY(-10px); box-shadow: 0 10px 25px rgba(255, 61, 104, 0.3); }
+.movie-card img { width: 100%; height: 320px; object-fit: cover; }
+.movie-card h3 { margin: 14px 14px 4px; font-size: 16px; color: #fff; }
+.movie-card p { margin: 0 14px 12px; color: #9ca3af; font-size: 12px; }
+
+.card-footer { display: flex; justify-content: space-between; align-items: center; padding: 0 14px 16px; }
+.card-footer span { color: #facc15; font-weight: 600; }
+.card-footer button { padding: 7px 18px; border-radius: 999px; background: linear-gradient(90deg, #ff3d68, #ff7a59); border: none; color: white; font-size: 12px; font-weight: 600; cursor: pointer; }
+
+/* ================= TRAILERS ================= */
+.trailers { padding: 80px 6%; background: #000; }
+.trailer-card { max-width: 900px; margin: auto; position: relative; border-radius: 20px; overflow: hidden; cursor: pointer; transition: 0.3s; }
+.trailer-card:hover { transform: scale(1.02); }
+.trailer-card img { width: 100%; display: block; }
+.play-btn { position: absolute; inset: 0; display: grid; place-items: center; font-size: 70px; background: rgba(0, 0, 0, 0.4); color: #fff; }
+
+.trailer-thumbnails { margin: 50px auto; display: flex; justify-content: center; gap: 36px; }
+.thumb { width: 130px; height: 130px; border-radius: 16px; overflow: hidden; cursor: pointer; position: relative; transition: 0.3s; }
+.thumb:hover { transform: translateY(-8px); }
+.thumb img { width: 100%; height: 100%; object-fit: cover; }
+.thumb-play { position: absolute; inset: 0; display: grid; place-items: center; font-size: 20px; background: rgba(0,0,0,0.3); color: #fff; }
+
+/* ================= POPUP ================= */
+.trailer-popup { position: fixed; inset: 0; display: none; justify-content: center; align-items: center; background: rgba(0, 0, 0, 0.95); z-index: 2000; backdrop-filter: blur(10px); }
+.trailer-video { width: 85%; max-width: 1100px; aspect-ratio: 16 / 9; position: relative; background: #000; border-radius: 20px; overflow: hidden; box-shadow: 0 0 50px rgba(255, 61, 104, 0.3); }
+.trailer-video iframe { width: 100%; height: 100%; border: none; }
+.close-btn { position: absolute; top: -50px; right: 0; font-size: 30px; cursor: pointer; color: #fff; transition: 0.3s; }
+.close-btn:hover { color: #ff3d68; }
+
+/* --- MEGA FOOTER STYLES --- */
+.site-footer {
+    background-color: #020617; /* Very dark slate, matching your theme */
+    border-top: 1px solid #1e293b;
+    padding: 50px 0 20px 0;
+    color: #cbd5e1;
+    font-family: Arial, sans-serif;
+    margin-top: 50px;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1.5fr; /* Makes the brand column slightly wider */
+    gap: 30px;
+}
+
+.footer-logo {
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-weight: 700;
+    /* Applying your exact header gradient */
+    background: linear-gradient(135deg, #ff3d68 0%, #ff7a59 50%, #ffd86b 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* We remove the solid color so the gradient flows seamlessly across the whole word */
+.footer-logo span {
+    color: inherit; 
+}
+
+.footer-col h3 {
+    color: #fff;
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.footer-col ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-col ul li {
+    margin-bottom: 12px;
+}
+
+.footer-col ul li a {
+    color: #94a3b8;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-col ul li a:hover {
+    color: #eab308; /* Turns yellow on hover */
+}
+
+.contact-info li {
+    color: #94a3b8;
+    font-size: 14px;
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #1e293b;
+    color: #64748b;
+    font-size: 14px;
+}
+
+/* ================= COMPLETE FRONTEND MOBILE FIX ================= */
+@media (max-width: 768px) {
+    /* 1. Eliminate the top black gap globally */
+    html, body {
+        margin: 0 !important;
+        padding: 0 !important;
+        overflow-x: hidden !important;
+        width: 100% !important;
+    }
+
+    /* 2. Re-architect the navigation box container layout */
+    .navbar {
+        position: relative !important; /* CRITICAL: Forces the navbar into structural layout flow so it pushes the slider down */
+        top: 0 !important;
+        left: 0 !important;
+        transform: none !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: stretch !important;
+        width: 100% !important;
+        height: auto !important;
+        padding: 15px !important;
+        gap: 15px !important;
+        margin: 0 !important;
+        border-radius: 0 0 20px 20px !important; /* Flush at top, rounded only on bottom */
+        box-sizing: border-box !important;
+    }
+
+    /* 3. Strip structural top margin limits off brand titles */
+    .navbar h1, .navbar .logo, .brand-name {
+        margin: 5px 0 0 0 !important;
+        text-align: center !important;
+    }
+
+    /* 4. Group links into a tidy text row wrap */
+    .nav-links {
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        gap: 15px !important;
+        margin: 5px 0 !important;
+        padding: 0 !important;
+    }
+
+    /* 5. Fix search alignment & lock icon inside layout inputs */
+    /* ================= 1. DEFINTIVE SEARCH BAR FIX ================= */
+    /* Forces the container to be the absolute positioning anchor for the icon */
+    .search-container, .search-wrapper, form[action*="search"] {
+        position: relative !important;
+        display: block !important;
+        width: 100% !important;
+        margin: 10px 0 !important;
+    }
+
+    /* Styles the input bar box cleanly to span full width */
+    input[type="search"], .search-box, .search-bar input {
+        width: 100% !important;
+        height: 45px !important; /* Sets a crisp, fixed touch height */
+        padding: 0 45px 0 20px !important; /* Extra 45px right padding prevents typing over icon */
+        font-size: 15px !important;
+        border: 1px solid rgba(255, 255, 255, 0.2) !important;
+        border-radius: 25px !important;
+        background: rgba(255, 255, 255, 0.1) !important;
+        color: #fff !important;
+        box-sizing: border-box !important;
+    }
+
+    /* Grabs your magnifying glass icon and locks it perfectly in the center-right side */
+    .search-icon, .search-btn, .search-container img, .search-container i, .search-container button {
+        position: absolute !important;
+        right: 15px !important;
+        top: 50% !important;
+        transform: translateY(-50%) !important; /* Perfect vertical mathematical centering */
+        background: transparent !important;
+        border: none !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        width: 20px !important;
+        height: 20px !important;
+        z-index: 10 !important;
+        cursor: pointer;
+    }
+
+    /* Centers the magnifying glass dynamically on the right */
+    .search-icon, .search-btn, .search-container img, .search-container i {
+        position: absolute !important;
+        right: 15px !important;
+        top: 50% !important;
+        transform: translateY(-50%) !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        background: transparent !important;
+        border: none !important;
+        z-index: 5 !important;
+    }
+
+    /* 6. Stack structural workspace actions cleanly */
+    .nav-actions, .navbar-right, .user-profile-actions {
+        display: flex !important;
+        flex-direction: column !important;
+        width: 100% !important;
+        gap: 10px !important;
+    }
+
+    .user-greeting {
+        text-align: center !important;
+        margin: 5px 0 !important;
+    }
+
+    .admin-btn, .logout-btn, .navbar a.btn {
+        width: 100% !important;
+        text-align: center !important;
+        box-sizing: border-box !important;
+        padding: 12px !important;
+        display: block !important;
+    }
+
+    /* ================= 100% WORKING SLIDER DISPLAY RESET ================= */
+    /* 7. Strip out absolute spacing rules so container heights stack naturally */
+    .hero, .slider, .carousel-container, .hero-section {
+        position: relative !important;
+        margin-top: 0 !important; /* Resets desktop drift gaps */
+        padding: 20px 15px !important;
+        width: 100% !important;
+        height: auto !important;
+        box-sizing: border-box !important;
+    }
+
+    /* Clean up title scales on smaller screens */
+    .hero h1, .slider h1, .hero-content h1 {
+        font-size: 26px !important;
+        line-height: 1.3 !important;
+        margin-top: 10px !important;
+    }
+
+    /* Stack 'Book Tickets' and 'Explore' choices cleanly */
+    .hero-buttons {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 12px !important;
+        width: 100% !important;
+        margin-top: 15px !important;
+    }
+
+    .hero-buttons a, .hero-buttons button {
+        width: 100% !important;
+        text-align: center !important;
+        box-sizing: border-box !important;
+    }
+    
+}

@@ -1,0 +1,673 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap');
+
+* { 
+    margin: 0; padding: 0; box-sizing: border-box; 
+    font-family: 'Outfit', sans-serif; 
+}
+
+body { 
+    background: #020617; 
+    color: #fff; 
+    display: flex; 
+    min-height: 100vh; 
+}
+
+/* --- SIDEBAR --- */
+.sidebar {
+    width: 260px;
+    background: rgba(15, 23, 42, 0.8);
+    backdrop-filter: blur(15px);
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    height: 100vh;
+    z-index: 100;
+}
+
+.admin-logo {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 50px;
+    background: linear-gradient(135deg, #ff3d68, #ffd86b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.menu-links { list-style: none; flex-grow: 1; }
+.menu-links li { margin-bottom: 12px; }
+.menu-links a {
+    text-decoration: none;
+    color: #94a3b8;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 18px;
+    border-radius: 12px;
+    transition: 0.3s ease;
+}
+
+.menu-links a:hover, .menu-links a.active {
+    background: rgba(255, 61, 104, 0.1);
+    color: #fff;
+    box-shadow: inset 0 0 10px rgba(255, 61, 104, 0.05);
+}
+
+.logout-btn {
+    color: #fb7185;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 12px 18px;
+    border-radius: 12px;
+    transition: 0.3s;
+}
+.logout-btn:hover { background: rgba(251, 113, 133, 0.1); }
+
+/* --- MAIN LAYOUT --- */
+.main-content {
+    margin-left: 260px;
+    padding: 40px;
+    width: calc(100% - 260px);
+}
+
+.header { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    margin-bottom: 40px; 
+}
+
+.header h1 { font-size: 32px; font-weight: 700; }
+
+/* --- DASHBOARD STATS --- */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 25px;
+    margin-bottom: 50px;
+}
+
+.stat-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 30px;
+    border-radius: 28px;
+    transition: all 0.3s ease;
+}
+
+.stat-card:hover { 
+    border-color: rgba(255, 61, 104, 0.5);
+    background: rgba(255, 255, 255, 0.05); 
+    transform: translateY(-8px);
+}
+
+.stat-card h3 { color: #94a3b8; font-size: 13px; text-transform: uppercase; letter-spacing: 1.5px; }
+.stat-card p { font-size: 36px; font-weight: 700; margin-top: 12px; }
+
+/* --- TABLES --- */
+.table-container {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 28px;
+    padding: 30px;
+}
+
+.table-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.add-btn {
+    background: linear-gradient(90deg, #ff3d68, #ff7a59);
+    color: #fff;
+    text-decoration: none;
+    padding: 12px 24px;
+    border-radius: 14px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+.add-btn:hover { transform: scale(1.05); box-shadow: 0 5px 20px rgba(255, 61, 104, 0.4); }
+
+table { width: 100%; border-collapse: collapse; }
+th { text-align: left; color: #64748b; font-size: 14px; padding: 15px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+td { padding: 18px 15px; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+
+.movie-thumb { width: 50px; height: 70px; border-radius: 10px; object-fit: cover; }
+
+.action-btns a {
+    text-decoration: none;
+    margin-right: 15px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: 0.2s;
+}
+.edit-link { color: #38bdf8; }
+.delete-link { color: #fb7185; }
+.edit-link:hover { text-shadow: 0 0 8px rgba(56, 189, 248, 0.6); }
+.delete-link:hover { text-shadow: 0 0 8px rgba(251, 113, 133, 0.6); }
+/* --- FORM LAYOUT --- */
+.form-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 28px;
+    padding: 40px;
+    max-width: 700px;
+    margin-top: 20px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.form-group { margin-bottom: 25px; }
+
+.form-group label { 
+    display: block; 
+    color: #94a3b8; 
+    margin-bottom: 10px; 
+    font-size: 14px; 
+}
+
+.form-group input {
+    width: 100%;
+    padding: 14px;
+    background: rgba(15, 23, 42, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    color: #fff;
+    outline: none;
+    transition: 0.3s;
+}
+
+.form-group input:focus { 
+    border-color: #ff3d68; 
+    background: rgba(15, 23, 42, 0.8); 
+}
+
+.full-width { grid-column: span 2; }
+
+.submit-btn {
+    background: linear-gradient(90deg, #ff3d68, #ff7a59);
+    color: #fff; 
+    border: none; 
+    padding: 16px; 
+    width: 100%;
+    border-radius: 14px; 
+    font-weight: 600; 
+    cursor: pointer; 
+    transition: 0.3s;
+}
+
+.submit-btn:hover { 
+    transform: translateY(-3px); 
+    box-shadow: 0 10px 20px rgba(255, 61, 104, 0.3); 
+}
+
+/* --- BADGES --- */
+.status-badge {
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    background: rgba(34, 197, 94, 0.1);
+    color: #22c55e;
+    border: 1px solid rgba(34, 197, 94, 0.2);
+}
+
+/* --- FORM ADDITIONS --- */
+.form-group input[type="url"] {
+    width: 100%;
+    padding: 14px;
+    background: rgba(15, 23, 42, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    color: #fff;
+    outline: none;
+    transition: 0.3s;
+}
+
+.form-group input[type="url"]:focus {
+    border-color: #ff3d68;
+}
+
+.helper-text {
+    display: block;
+    font-size: 11px;
+    color: #64748b;
+    margin-top: 5px;
+}
+
+/* --- FORM INPUTS & HELPERS --- */
+.form-group input[type="url"] {
+    width: 100%;
+    padding: 14px;
+    background: rgba(15, 23, 42, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    color: #fff;
+    outline: none;
+    transition: 0.3s;
+}
+
+.form-group input[type="url"]:focus {
+    border-color: #ff3d68;
+}
+
+.helper-text {
+    display: block;
+    font-size: 11px;
+    color: #64748b;
+    margin-top: 5px;
+    font-style: italic;
+}
+
+/* Edit Page Image Preview */
+.current-poster-preview {
+    width: 80px;
+    height: 110px;
+    border-radius: 8px;
+    object-fit: cover;
+    margin-bottom: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.delete-link {
+    color: #fb7185;
+    padding: 5px 10px;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.delete-link:hover {
+    background: rgba(251, 113, 133, 0.1);
+    text-shadow: 0 0 8px rgba(251, 113, 133, 0.6);
+}
+
+.form-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 40px;
+    border-radius: 24px;
+}
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.form-group label { display: block; color: #94a3b8; margin-bottom: 8px; }
+.form-group input {
+    width: 100%;
+    padding: 12px;
+    background: #0f172a;
+    border: 1px solid #334155;
+    color: white;
+    border-radius: 8px;
+}
+.submit-btn {
+    margin-top: 20px;
+    width: 100%;
+    padding: 15px;
+    background: #ff3d68;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+}
+
+/* --- Admin Form Styling --- */
+.form-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 28px;
+    padding: 40px;
+    max-width: 800px;
+    margin-top: 20px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    color: #94a3b8;
+    margin-bottom: 10px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 14px 18px;
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    color: #fff;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus {
+    border-color: #ff3d68;
+    background: rgba(15, 23, 42, 0.9);
+    box-shadow: 0 0 15px rgba(255, 61, 104, 0.1);
+}
+
+.full-width {
+    grid-column: span 2;
+}
+
+.helper-text {
+    display: block;
+    font-size: 12px;
+    color: #64748b;
+    margin-top: 6px;
+    font-style: italic;
+}
+
+.submit-btn {
+    background: linear-gradient(90deg, #ff3d68, #ff7a59);
+    color: #fff;
+    border: none;
+    padding: 16px;
+    width: 100%;
+    border-radius: 14px;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+    margin-top: 10px;
+}
+
+.submit-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(255, 61, 104, 0.4);
+}
+
+/* Edit Page Poster Preview */
+.edit-preview-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-top: 5px;
+}
+
+.edit-preview-img {
+    width: 60px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 2px solid rgba(255, 61, 104, 0.3);
+}
+
+/* --- Dashboard Stats Grid --- */
+.stats-grid {
+    display: grid;
+    /* This specifically forces the grid to have exactly 3 equal columns */
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 20px; /* Adds nice breathing room between the cards */
+    margin-bottom: 30px; /* Adds space before the Quick Actions section */
+}
+
+.stat-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 30px;
+    border-radius: 24px;
+    transition: transform 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.stat-card h3 {
+    color: #94a3b8;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+
+.stat-card .number {
+    font-size: 36px;
+    font-weight: 700;
+    color: #fff;
+}
+
+.stat-card .trend {
+    display: block;
+    font-size: 12px;
+    margin-top: 10px;
+    color: #22c55e; /* Green for positive growth */
+}
+
+/* Quick Actions Container */
+.action-section {
+    margin-top: 20px;
+}
+
+.welcome-banner {
+    background: linear-gradient(90deg, rgba(255, 61, 104, 0.1), transparent);
+    padding: 20px;
+    border-left: 4px solid #ff3d68;
+    border-radius: 8px;
+    margin-bottom: 30px;
+}
+
+/* --- User Management Styles --- */
+.user-avatar {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background: #334155;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-weight: bold;
+    font-size: 14px;
+    margin-right: 10px;
+}
+
+.role-badge {
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.role-admin {
+    background: rgba(255, 61, 104, 0.1);
+    color: #ff3d68;
+}
+
+.role-user {
+    background: rgba(148, 163, 184, 0.1);
+    color: #94a3b8;
+}
+
+.email-link {
+    color: #38bdf8;
+    text-decoration: none;
+}
+
+.email-link:hover {
+    text-decoration: underline;
+}
+
+.form-group select {
+    width: 100%;
+    padding: 14px 18px;
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    color: #fff;
+    outline: none;
+    appearance: none; /* Removes default arrow */
+    cursor: pointer;
+}
+
+.form-group select option {
+    background: #0f172a;
+    color: #fff;
+}
+
+/* --- Website Link in Sidebar --- */
+.website-link-container {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.website-link {
+    color: #22c55e !important; /* Green color to stand out */
+    font-weight: 600;
+    transition: 0.3s ease;
+}
+
+.website-link:hover {
+    color: #fff !important;
+    background: rgba(34, 197, 94, 0.2) !important;
+}
+
+/* --- Styling for the Add Branch City Dropdown --- */
+.form-select {
+    width: 100%;
+    padding: 12px;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid #334155;
+    border-radius: 8px;
+    color: #fff;
+    outline: none;
+    appearance: none;
+    font-family: inherit;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.form-select option {
+    background: #0f172a;
+    color: #fff;
+}
+
+/* Helper class for muted/grey text */
+.text-muted {
+    color: #94a3b8;
+}
+
+/* Empty table state styling */
+.empty-state {
+    text-align: center;
+    padding: 20px;
+    color: #94a3b8;
+}
+
+/* Formatting for the dynamic pricing column in Admin panel */
+.price-cell {
+    line-height: 1.6;
+    font-size: 13px;
+}
+
+.price-badge {
+    color: #cbd5e1;
+}
+
+/* ================= MOBILE RESPONSIVENESS ================= */
+@media (max-width: 768px) {
+    /* 1. Stack the layout vertically instead of side-by-side */
+    body {
+        display: block; /* Turns off the flex row */
+    }
+
+    /* 2. Un-pin the sidebar and make it sit at the top */
+    .sidebar {
+        position: relative;
+        width: 100%;
+        height: auto;
+        border-right: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 20px;
+    }
+
+    /* 3. Give the main content its space back */
+    .main-content {
+        margin-left: 0; /* Removes the 260px gap */
+        width: 100%;
+        padding: 20px;
+    }
+
+    /* 4. Fix the squished text in the header */
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+    
+    .header h1 {
+        font-size: 24px;
+    }
+
+    /* 5. Stack the 3 stat cards into 1 single column */
+    .stats-grid {
+        grid-template-columns: 1fr; 
+        gap: 15px;
+    }
+
+    /* 6. Stack the admin forms (like Add Movie) into 1 column */
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* 7. Allow data tables to scroll sideways if they get too wide */
+    .table-container {
+        overflow-x: auto;
+    }
+    /* --- TABLE ACTIONS MOBILE FIX --- */
+    
+    /* 1. Force Edit and Delete to sit side-by-side with breathing room */
+    .action-btns {
+        display: flex !important;
+        flex-direction: row !important;
+        gap: 15px !important; /* Adds a clean 15px gap between Edit and Delete */
+        align-items: center !important;
+        white-space: nowrap !important; /* Prevents them from wrapping onto two rows */
+    }
+
+    /* 2. Make them look like distinct, easily clickable text buttons */
+    .action-btns a {
+        margin: 0 !important; /* Clear out old desktop margins */
+        padding: 6px 10px !important; /* Adds an invisible touch target area */
+        font-size: 15px !important; /* Makes the text slightly larger for easy tapping */
+    }
+
+    /* --- TABLE CONTAINER HEADER MOBILE ALIGNMENT --- */
+    
+    /* 1. Force the title container to break elements into a vertical stack instead of a row */
+    .table-header {
+        display: flex !important;
+        flex-direction: column !important; 
+        align-items: flex-start !important; /* Left-align the stacked elements */
+        gap: 15px !important; /* Add clean breathing room between the title and button */
+        width: 100% !important;
+        box-sizing: border-box;
+    }
+
+    /* 2. Force the '+ Add' buttons to take up full-width on mobile for better thumb tap-targets */
+    .add-btn {
+        width: 100% !important;
+        text-align: center !important;
+        display: block !important;
+        box-sizing: border-box;
+    }
+}

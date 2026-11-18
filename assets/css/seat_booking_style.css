@@ -1,0 +1,145 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(to bottom, #0f172a, #111827);
+    color: white;
+}
+
+/* HEADER */
+.header {
+    text-align: center;
+    padding: 30px 20px 10px;
+}
+
+.header h2 {
+    margin: 0;
+    font-size: 28px;
+}
+
+.sub-title {
+    color: #9ca3af;
+    margin-top: 5px;
+}
+
+/* SCREEN */
+.screen {
+    width: 60%;
+    margin: 30px auto;
+    height: 40px;
+    border-top: 5px solid #facc15;
+    border-radius: 100% 100% 0 0;
+    text-align: center;
+    font-size: 12px;
+    letter-spacing: 3px;
+    padding-top: 5px;
+    color: #facc15;
+}
+
+/* LAYOUT */
+.theater-layout {
+    text-align: center;
+    padding-bottom: 120px;
+}
+
+.section-title {
+    margin: 30px 0 15px;
+    font-weight: bold;
+    font-size: 15px;
+    color: #facc15;
+    letter-spacing: 1px;
+}
+
+.seat-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.row-label {
+    width: 30px;
+    font-weight: bold;
+    color: #9ca3af;
+}
+
+/* SEATS */
+.seat {
+    width: 34px;
+    height: 34px;
+    margin: 5px;
+    border-radius: 8px;
+    background: #1f2937;
+    border: 1px solid #374151;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.seat:hover {
+    background: #374151;
+    transform: scale(1.1);
+}
+
+.seat.selected {
+    background: #facc15;
+    color: black;
+    box-shadow: 0 0 10px #facc15;
+}
+
+.seat.occupied {
+    background: #4b5563;
+    cursor: not-allowed;
+}
+
+/* GAP IN CENTER */
+.seat:nth-child(8) {
+    margin-right: 25px;
+}
+
+/* BOTTOM BAR */
+.booking-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    box-sizing: border-box; /* IMPORTANT FIX */
+    background: #111827;
+    padding: 15px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #374151;
+    z-index: 999;
+}
+
+.total-text {
+    font-size: 18px;
+}
+
+.total-text span {
+    color: #facc15;
+    font-weight: bold;
+}
+
+.pay-btn {
+    background: #facc15;
+    border: none;
+    padding: 12px 30px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.pay-btn:hover {
+    background: #eab308;
+}
+
+.pay-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}

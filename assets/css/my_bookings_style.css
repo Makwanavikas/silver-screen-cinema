@@ -1,0 +1,163 @@
+/* ================= MY BOOKINGS PAGE STYLES ================= */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+body {
+    /* ✨ FIX 1: Cinematic Background Image with Dark Gradient Overlay ✨ */
+    /* Note: Change 'login-bg.jpg' to the exact name of your background image */
+    background: linear-gradient(rgba(2, 6, 23, 0.85), rgba(2, 6, 23, 0.95)), url('../img/loginbg.png') no-repeat center center fixed;
+    background-size: cover;
+    
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    
+    /* ✨ FIX 2: The Scrolling Fix ✨ */
+    min-height: 100vh;
+    overflow-y: auto; 
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+    /* Extra padding at bottom so the last card doesn't stick to the floor */
+    padding-bottom: 60px; 
+}
+
+.page-title {
+    color: #f5c542; /* System golden-yellow */
+    font-size: 32px;
+    margin-bottom: 30px;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.bookings-grid {
+    display: grid;
+    /* Creates a beautiful 2 or 3 column layout depending on screen size */
+    grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
+    gap: 25px;
+}
+
+.booking-card {
+    /* ✨ Glassmorphism Effect ✨ */
+    background: rgba(15, 23, 42, 0.6); 
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    transition: 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.booking-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(245, 197, 66, 0.15); /* Golden hover glow */
+    border-color: rgba(245, 197, 66, 0.4);
+}
+
+.booking-poster {
+    width: 140px;
+    min-height: 220px;
+    background-size: cover;
+    background-position: center;
+    border-right: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.booking-info {
+    padding: 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.movie-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 12px;
+    letter-spacing: 0.5px;
+}
+
+.booking-detail {
+    font-size: 13px;
+    color: #94a3b8;
+    margin-bottom: 6px;
+}
+
+.booking-detail strong {
+    color: #cbd5e1;
+}
+
+/* Badge for Upcoming vs Completed shows */
+.ticket-status {
+    display: inline-block;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+    margin-top: 12px;
+    margin-bottom: 15px;
+    width: fit-content;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.status-upcoming {
+    background: rgba(34, 197, 94, 0.15);
+    color: #4ade80; /* Bright Green */
+    border: 1px solid rgba(34, 197, 94, 0.3);
+}
+
+.status-completed {
+    background: rgba(148, 163, 184, 0.15);
+    color: #94a3b8; /* Grey */
+    border: 1px solid rgba(148, 163, 184, 0.3);
+}
+
+.view-ticket-btn {
+    display: block;
+    text-align: center;
+    background: linear-gradient(135deg, #f5c542, #d4a017);
+    color: #000;
+    text-decoration: none;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 700;
+    transition: 0.3s;
+    border: none;
+    cursor: pointer;
+}
+
+.view-ticket-btn:hover {
+    background: linear-gradient(135deg, #ffd966, #c9a227);
+    transform: scale(1.02);
+}
+
+.empty-state {
+    text-align: center;
+    padding: 80px 20px;
+    background: rgba(15, 23, 42, 0.6);
+    backdrop-filter: blur(12px);
+    border-radius: 12px;
+    border: 1px dashed rgba(255, 255, 255, 0.2);
+    color: #94a3b8;
+}
+
+.empty-state a {
+    color: #f5c542;
+    text-decoration: none;
+    font-weight: 600;
+    margin-top: 15px;
+    display: inline-block;
+}

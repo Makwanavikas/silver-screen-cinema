@@ -1,0 +1,224 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Background */
+body {
+    min-height: 100vh;
+    position: relative; /* Add this */
+    /* background : red; */
+    background: url("../img/loginbg.png") no-repeat center center/cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Recommended to prevent scrollbars */
+}
+
+/* Dark overlay for readability */
+body::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    z-index: -1; /* Change this to -1 so it stays BEHIND the login box */
+}
+
+/* Glass login box */
+.login-box {
+    position: relative;
+    z-index: 1;
+    width: 380px;
+    padding: 40px;
+
+    background: rgba(20, 20, 20, 0.45); /* darker glass */
+    
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+
+    border-radius: 16px;
+
+    /* NEW CINEMA-STYLE BORDER */
+    border: 2px solid rgba(245, 197, 66, 0.45);
+
+    /* soft glowing border */
+    box-shadow:
+        0 0 25px rgba(245, 197, 66, 0.25),
+        inset 0 0 15px rgba(255, 255, 255, 0.05);
+
+    color: #ffffff;
+}
+
+/* Heading */
+.login-box h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #f5c542; /* golden cinema tone */
+}
+
+/* Input fields */
+.input-box {
+    position: relative;
+    margin-bottom: 28px;
+}
+
+.input-box input {
+    width: 100%;
+    padding: 10px 5px;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid #ddd;
+    outline: none;
+    color: #ffffff;
+    font-size: 16px;
+}
+
+.input-box label {
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50%);
+    color: #ccc;
+    pointer-events: none;
+    transition: 0.3s;
+}
+
+.input-box input:focus ~ label,
+.input-box input:valid ~ label {
+    top: -8px;
+    font-size: 12px;
+    color: #f5c542;
+}
+input[type="password"]::-ms-reveal,
+
+input[type="password"]::-ms-clear {
+    filter: invert(1) sepia(1) saturate(5) hue-rotate(10deg);
+}
+
+/* Remember & forgot */
+.remember-forgot {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    margin-bottom: 20px;
+    color: #eee;
+}
+
+.remember-forgot a {
+    color: #f5c542;
+    text-decoration: none;
+}
+
+/* Button */
+button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 25px;
+    background: linear-gradient(135deg, #f5c542, #d4a017);
+    color: #000;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: linear-gradient(135deg, #ffd966, #c9a227);
+}
+
+/* Register text */
+.register {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+    color: #eee;
+}
+
+.register a {
+    color: #f5c542;
+    text-decoration: none;
+}
+
+/* ================= FORGOT PASSWORD LINK (LOGIN PAGE) ================= */
+.forgot-link-container {
+    text-align: right; /* Pushes the link to the right side */
+    margin-top: -15px; /* Pulls it slightly closer to the password box */
+    margin-bottom: 25px; /* Gives space before the login button */
+}
+
+.forgot-link {
+    color: #ccc; /* Subtle grey color to match your subtitle text */
+    text-decoration: none;
+    font-size: 13px;
+    transition: color 0.3s ease;
+}
+
+.forgot-link:hover {
+    color: #eab308; /* Highlights to your signature Yellow on hover! */
+    text-decoration: underline;
+}
+
+/* ================= OTP & PASSWORD RESET SPECIFIC TEXT ================= */
+.auth-subtitle {
+    color: #ccc;
+    font-size: 14px;
+    margin-bottom: 30px;
+    line-height: 1.5;
+    text-align: center;
+}
+
+.auth-subtitle strong {
+    color: #f5c542; /* Matches your golden cinema tone */
+}
+
+.error-text {
+    color: #ff4d4d; /* Bright red to stand out against the dark theme */
+    font-size: 12px;
+    display: block;
+    margin-top: 5px;
+    font-weight: 500;
+}
+
+/* Styling for the Password Checklist */
+.password-rules {
+    text-align: left;
+    font-size: 12px;
+    margin-top: 5px;
+    margin-bottom: 20px;
+}
+.password-rules p {
+    margin: 0 0 5px 0;
+    color: #ccc; /* Light grey text for dark theme */
+    font-weight: bold;
+}
+.password-rules .invalid {
+    color: #ff4d4d; /* Red for missing rules */
+}
+.password-rules .valid {
+    color: #4CAF50; /* Green for passed rules */
+}
+
+/* Make the disabled button look greyed out */
+button:disabled {
+    background-color: #555 !important;
+    color: #888 !important;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+/* When the screen is 400px or smaller */
+
+@media (max-width: 400px) {
+    .login-box {
+        width: 90%; /* Let it shrink to fit the screen */
+        padding: 25px; /* Reduce padding to save space */
+    }
+    
+    .login-box h2 {
+        font-size: 24px; /* Slightly smaller text */
+    }
+    
+}

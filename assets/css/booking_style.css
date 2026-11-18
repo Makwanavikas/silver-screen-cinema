@@ -1,0 +1,626 @@
+/* ================= BOOKING FLOW GLOBAL ================= */
+body {
+    background: #020617;
+    color: #fff;
+    font-family: 'Outfit', sans-serif;
+}
+
+.booking-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+.page-title {
+    text-align: center;
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+.sub-title {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 18px;
+    color: #ff3d68;
+    font-weight: 600;
+}
+
+.back-link {
+    display: inline-block;
+    color: #94a3b8;
+    text-decoration: none;
+    margin-bottom: 20px;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.back-link:hover {
+    color: #ff3d68;
+    transform: translateX(-5px);
+}
+
+/* ================= STEP 1: THEATER LIST ================= */
+.theater-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    padding: 25px;
+    margin-bottom: 20px;
+    backdrop-filter: blur(10px);
+    transition: transform 0.3s ease;
+}
+
+.theater-card:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 61, 104, 0.3);
+}
+
+.theater-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding-bottom: 15px;
+}
+
+.theater-name {
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 4px;
+}
+
+.theater-location {
+    font-size: 13px;
+    color: #94a3b8;
+}
+
+.status-text {
+    font-size: 12px;
+    color: #22c55e;
+    font-weight: 600;
+    background: rgba(34, 197, 94, 0.1);
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+/* Time Slots */
+.time-slots {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.time-btn {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid #22c55e;
+    color: #22c55e;
+    padding: 10px 24px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.time-btn:hover {
+    background: #22c55e;
+    color: #000;
+    box-shadow: 0 0 15px rgba(34, 197, 94, 0.4);
+    transform: translateY(-2px);
+}
+
+/* ================= STEP 2: SEAT GRID (Upcoming) ================= */
+.screen-container {
+    perspective: 1000px;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.screen {
+    background: #fff;
+    height: 60px;
+    width: 100%;
+    margin: 15px 0;
+    transform: rotateX(-45deg) scale(0.8);
+    box-shadow: 0 30px 50px rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    opacity: 0.5;
+}
+
+.screen-text {
+    font-size: 12px;
+    color: #64748b;
+    margin-top: -30px;
+}
+
+.seat-row {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.seat {
+    width: 30px;
+    height: 30px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 6px; /* Rounded top for chair look */
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    cursor: pointer;
+    transition: 0.2s;
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: transparent; /* Hide number unless needed */
+}
+
+.seat:hover:not(.occupied) {
+    background: #fff;
+    transform: scale(1.1);
+}
+
+.seat.selected {
+    background: #22c55e;
+    box-shadow: 0 0 10px #22c55e;
+}
+
+.seat.occupied {
+    background: #334155;
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+/* Price Legend */
+.legend {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 30px 0;
+    background: rgba(255, 255, 255, 0.02);
+    padding: 15px;
+    border-radius: 12px;
+}
+
+.legend-item { display: flex; align-items: center; gap: 8px; font-size: 14px; color: #94a3b8; }
+.legend-box { width: 15px; height: 15px; border-radius: 4px; }
+.box-available { background: rgba(255, 255, 255, 0.1); }
+.box-selected { background: #22c55e; }
+.box-sold { background: #334155; }
+
+/* Booking Bar (Bottom) */
+.booking-bar {
+    position: fixed;
+    bottom: 0; left: 0; width: 100%;
+    background: rgba(15, 23, 42, 0.95);
+    padding: 20px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    backdrop-filter: blur(10px);
+    z-index: 100;
+}
+
+.total-price { font-size: 24px; font-weight: 700; color: #fff; }
+.pay-btn {
+    background: linear-gradient(90deg, #ff3d68, #ff7a59);
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 16px;
+}
+.pay-btn:disabled { background: #334155; cursor: not-allowed; }
+
+/* ================= TICKET CONFIRMATION ================= */
+.ticket-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+}
+
+.ticket-card {
+    background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.01));
+    border: 1px solid rgba(34, 197, 94, 0.3);
+    border-radius: 20px;
+    padding: 40px;
+    max-width: 500px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 10px 40px rgba(34, 197, 94, 0.1);
+    backdrop-filter: blur(15px);
+}
+
+.ticket-success-icon {
+    color: #22c55e;
+    font-size: 60px;
+    margin-bottom: 10px;
+    line-height: 1;
+}
+
+.ticket-details-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    text-align: left;
+    background: rgba(0, 0, 0, 0.4);
+    padding: 25px;
+    border-radius: 12px;
+    margin: 25px 0;
+    border: 1px dashed rgba(255, 255, 255, 0.1);
+}
+
+.detail-group label {
+    color: #94a3b8;
+    font-size: 13px;
+    display: block;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.detail-group .val {
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+}
+
+.home-btn {
+    background: #22c55e;
+    color: #020617;
+    padding: 12px 30px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 700;
+    display: inline-block;
+    transition: 0.3s;
+}
+
+.home-btn:hover {
+    background: #16a34a;
+    box-shadow: 0 0 15px rgba(34, 197, 94, 0.4);
+}
+
+/* ================= BOOKING FLOW GLOBAL ================= */
+body {
+    background: #020617;
+    color: #fff;
+    font-family: 'Outfit', sans-serif;
+}
+
+.booking-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+.page-title {
+    text-align: center;
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+.sub-title {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 18px;
+    color: #ff3d68;
+    font-weight: 600;
+}
+
+.back-link {
+    display: inline-block;
+    color: #94a3b8;
+    text-decoration: none;
+    margin-bottom: 20px;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.back-link:hover {
+    color: #ff3d68;
+    transform: translateX(-5px);
+}
+
+/* ================= STEP 1: THEATER LIST ================= */
+.theater-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    padding: 25px;
+    margin-bottom: 20px;
+    backdrop-filter: blur(10px);
+    transition: transform 0.3s ease;
+}
+
+.theater-card:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 61, 104, 0.3);
+}
+
+.theater-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding-bottom: 15px;
+}
+
+.theater-name {
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 4px;
+}
+
+.theater-location {
+    font-size: 13px;
+    color: #94a3b8;
+}
+
+.status-text {
+    font-size: 12px;
+    color: #22c55e;
+    font-weight: 600;
+    background: rgba(34, 197, 94, 0.1);
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+.time-slots {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.time-btn {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid #22c55e;
+    color: #22c55e;
+    padding: 10px 24px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.time-btn:hover {
+    background: #22c55e;
+    color: #000;
+    box-shadow: 0 0 15px rgba(34, 197, 94, 0.4);
+    transform: translateY(-2px);
+}
+
+/* ================= STEP 2: SEAT GRID ================= */
+.screen-container {
+    perspective: 1000px;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.screen {
+    background: #fff;
+    height: 60px;
+    width: 100%;
+    margin: 15px 0;
+    transform: rotateX(-45deg) scale(0.8);
+    box-shadow: 0 30px 50px rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    opacity: 0.5;
+}
+
+.screen-text {
+    font-size: 12px;
+    color: #64748b;
+    margin-top: -30px;
+}
+
+.seat-row {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+/* ✨ NEW: Solid White for Available Seats */
+.seat {
+    width: 30px;
+    height: 30px;
+    background: #ffffff; 
+    border-radius: 6px; 
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    cursor: pointer;
+    transition: 0.2s;
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: transparent; /* Hides number to keep it clean */
+    box-shadow: 0 2px 5px rgba(255, 255, 255, 0.2);
+}
+
+.seat:hover:not(.occupied) {
+    transform: scale(1.1);
+    background: #e2e8f0; /* Slight grey on hover so they know it's clickable */
+    color: #000; /* Show seat number when hovering */
+}
+
+/* Selected Seats stay Green to show active choice */
+.seat.selected {
+    background: #22c55e;
+    box-shadow: 0 0 10px #22c55e;
+    color: #fff;
+}
+
+/* ✨ NEW: Solid Red for Occupied/Sold Seats */
+.seat.occupied {
+    background: #ef4444; 
+    color: rgba(255, 255, 255, 0.5); /* Faint text so they know the seat number */
+    cursor: not-allowed;
+    opacity: 0.8;
+    box-shadow: 0 0 8px rgba(239, 68, 68, 0.4);
+}
+
+/* ✨ NEW: Price Legend updated to match */
+.legend {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 30px 0;
+    background: rgba(255, 255, 255, 0.02);
+    padding: 15px;
+    border-radius: 12px;
+}
+
+.legend-item { display: flex; align-items: center; gap: 8px; font-size: 14px; color: #94a3b8; }
+.legend-box { width: 15px; height: 15px; border-radius: 4px; }
+.box-available { background: #ffffff; box-shadow: 0 2px 5px rgba(255,255,255,0.2); }
+.box-selected { background: #22c55e; }
+.box-sold { background: #ef4444; }
+
+/* Booking Bar (Bottom) */
+.booking-bar {
+    position: fixed;
+    bottom: 0; left: 0; width: 100%;
+    background: rgba(15, 23, 42, 0.95);
+    padding: 20px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    backdrop-filter: blur(10px);
+    z-index: 100;
+}
+
+.total-price { font-size: 24px; font-weight: 700; color: #fff; }
+.pay-btn {
+    background: linear-gradient(90deg, #ff3d68, #ff7a59);
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 16px;
+}
+.pay-btn:disabled { background: #334155; cursor: not-allowed; }
+
+/* ================= TICKET CONFIRMATION ================= */
+.ticket-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+}
+
+.ticket-card {
+    background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.01));
+    border: 1px solid rgba(34, 197, 94, 0.3);
+    border-radius: 20px;
+    padding: 40px;
+    max-width: 500px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 10px 40px rgba(34, 197, 94, 0.1);
+    backdrop-filter: blur(15px);
+}
+
+.ticket-success-icon {
+    color: #22c55e;
+    font-size: 60px;
+    margin-bottom: 10px;
+    line-height: 1;
+}
+
+.ticket-details-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    text-align: left;
+    background: rgba(0, 0, 0, 0.4);
+    padding: 25px;
+    border-radius: 12px;
+    margin: 25px 0;
+    border: 1px dashed rgba(255, 255, 255, 0.1);
+}
+
+.detail-group label {
+    color: #94a3b8;
+    font-size: 13px;
+    display: block;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.detail-group .val {
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+}
+
+.home-btn {
+    background: #22c55e;
+    color: #020617;
+    padding: 12px 30px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 700;
+    display: inline-block;
+    transition: 0.3s;
+}
+
+.home-btn:hover {
+    background: #16a34a;
+    box-shadow: 0 0 15px rgba(34, 197, 94, 0.4);
+}
+
+/* ================= CITY SELECTOR (THEATER PAGE) ================= */
+.city-selector-container {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 30px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    backdrop-filter: blur(10px);
+}
+
+.city-selector-container form {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.city-select-dropdown {
+    padding: 10px 20px;
+    border-radius: 8px;
+    background: #0f172a;
+    color: #fff;
+    border: 1px solid #22c55e;
+    font-size: 16px;
+    font-family: 'Outfit', sans-serif;
+    outline: none;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.city-select-dropdown:hover {
+    box-shadow: 0 0 10px rgba(34, 197, 94, 0.2);
+}

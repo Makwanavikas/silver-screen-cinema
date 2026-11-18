@@ -1,0 +1,232 @@
+/* ================= SYSTEM THEMED TICKET STYLES ================= */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    position: relative;
+    /* Exactly matching your system background */
+    background: url("../img/loginbg.png") no-repeat center center/cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* The exact dark overlay from your system */
+body::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.65); /* Slightly darker so the ticket pops */
+    z-index: -1; 
+}
+
+.success-header {
+    text-align: center;
+    margin-bottom: 30px;
+    z-index: 1;
+}
+
+.success-header h1 {
+    color: #f5c542; /* Your golden cinema tone */
+    margin-bottom: 5px;
+}
+
+.success-header p {
+    color: #ccc;
+}
+
+/* The exact glass box from your login page, just made wider! */
+.ticket-glass-box {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 800px;
+    
+    background: rgba(20, 20, 20, 0.45); 
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-radius: 16px;
+
+    /* Exact golden cinema borders and shadows */
+    border: 2px solid rgba(245, 197, 66, 0.45);
+    box-shadow: 0 0 25px rgba(245, 197, 66, 0.25), inset 0 0 15px rgba(255, 255, 255, 0.05);
+
+    color: #ffffff;
+    display: flex;
+    overflow: hidden;
+}
+
+/* Left: Movie Poster */
+.ticket-poster {
+    width: 250px;
+    background-size: cover;
+    background-position: center;
+    border-right: 1px solid rgba(245, 197, 66, 0.3);
+}
+
+/* Middle: Details */
+.ticket-details {
+    flex: 1;
+    padding: 40px;
+}
+
+.ticket-details h2 {
+    color: #f5c542;
+    font-size: 28px;
+    margin-bottom: 5px;
+}
+
+.sub-brand {
+    color: #ccc;
+    font-size: 14px;
+    margin-bottom: 25px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding-bottom: 15px;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 25px;
+}
+
+.info-item label {
+    display: block;
+    color: #aaa;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+}
+
+.info-item span {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.highlight-text {
+    color: #f5c542; /* Highlight seats in gold */
+}
+
+/* Right: QR Code */
+.ticket-qr {
+    padding: 40px 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-left: 1px dashed rgba(245, 197, 66, 0.45); /* Golden tear line */
+    background: rgba(0,0,0,0.2);
+}
+
+.qr-box {
+    background: #fff;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+/* Exact buttons from your login page */
+.action-buttons {
+    margin-top: 30px;
+    display: flex;
+    gap: 20px;
+    z-index: 1;
+}
+
+.btn {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 25px;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.3s;
+    text-decoration: none;
+    text-align: center;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #f5c542, #d4a017);
+    color: #000;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #ffd966, #c9a227);
+}
+
+.btn-secondary {
+    background: transparent;
+    border: 2px solid #ddd;
+    color: #fff;
+}
+
+.btn-secondary:hover {
+    border-color: #f5c542;
+    color: #f5c542;
+}
+
+/* ================= ✨ PRINTER-FRIENDLY INK-SAVER FIX ✨ ================= */
+@media print {
+    /* 1. Force pure white background for the whole page */
+    body { 
+        background: #fff !important; 
+        padding: 0 !important;
+        display: block !important;
+    }
+    
+    /* 2. Hide the dark overlay, success messages, and buttons so they don't print */
+    body::before, .success-header, .action-buttons { 
+        display: none !important; 
+    }
+    
+    /* 3. Strip all glass effects and make the ticket a clean, white box */
+    .ticket-glass-box { 
+        box-shadow: none !important; 
+        border: 2px solid #000 !important; 
+        background: #fff !important; 
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+        border-radius: 0 !important; /* Sharp corners for a formal receipt look */
+        page-break-inside: avoid !important; 
+    }
+    
+    /* 4. Force ALL text to be pure black or dark gray for readability */
+    .ticket-glass-box,
+    .ticket-details h2, 
+    .info-item span,
+    .highlight-text { 
+        color: #000 !important; 
+    }
+    
+    .sub-brand, .info-item label { 
+        color: #555 !important; 
+        border-bottom-color: #ddd !important; 
+    }
+    
+    /* 5. Convert golden borders to solid black ink lines */
+    .ticket-poster { 
+        border-right: 2px solid #000 !important; 
+    }
+    
+    .ticket-qr { 
+        border-left: 2px dashed #000 !important; /* Keep the tear-line look */
+        background: transparent !important; 
+    }
+
+    .qr-box {
+        border: 1px solid #000 !important;
+        padding: 5px !important;
+    }
+}
